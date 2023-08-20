@@ -84,6 +84,34 @@ Now lets connect to the server and get the access of it
 
 Lets goo we got the first flag, now lets look at the second question..
 
+
+
 For this lets look at the users present in the machine and seeif we  can find anything userful
+
+![Screenshot_2023-08-20_13_55_55](https://github.com/Anirudh-Saxena/Mustacchio-Writeup/assets/73027020/b4ff5b97-f38f-4524-b488-ed64b623b6de)
+
+okie so we have something good in here like `Live Nginx Log` is written to STDOUT.
+
+So in order to exploit this or gain the root access we can simply create the `tail` file in the `/tmp` file, and then give him the `chmod +x` per to make it executbale 
+
+write this script in the `tail` file
+
+    #!/bin/bash
+    /bin/bash -p
+
+Now our final goal is to add the tail to the `/tmp directory` at the top of our PATH environment variable. With that done, we can run the program, and get the root access shell and then we can get the flag..
+
+Make sure to run this command at a time for more refer the ss 
+
+         PATH=/tmp:$PATH
+         cd /home/joe
+         ./live_log
+         id
+
+        cd /root && ls -l
+      
+
+![fflag](https://github.com/Anirudh-Saxena/Mustacchio-Writeup/assets/73027020/4b321e97-9940-494f-a337-a6e8f7be0739)
+
 
 
